@@ -1,0 +1,9 @@
+<odoo>
+    <record id="real_estate_manager_group" model="res.groups">
+        <field name="name">Real Estate Manager</field>
+    </record>
+    <record id="real_estate_user_group" model="res.groups">
+        <field name="name">Real Estate User</field>
+    </record>
+
+</odoo>

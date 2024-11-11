@@ -1,0 +1,73 @@
+<odoo>
+    <record id="candidate_view_tree" model="ir.ui.view">
+        <field name="name">candidate view</field>
+        <field name="model">candidate</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="number_ins"/>
+                <field name="session_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="candidate_view_form" model="ir.ui.view">
+        <field name="name">candidate form</field>
+        <field name="model">candidate</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="number_ins"/>
+                        <field name="session_ids" widget="many2many_tags"/>
+                        <field name="user_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="candidate_action" model="ir.actions.act_window">
+        <field name="name">Candidate</field>
+        <field name="res_model">candidate</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <record id="Candidate_view_kanban" model="ir.ui.view">
+        <field name="name">candidate kanban</field>
+        <field name="model">candidate</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="number_ins"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <div>Number Ins:
+                                    <field name="number_ins"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <menuitem
+            id="candidate_menu_item"
+            name="Candidate"
+            parent="candidate_menu"
+            action="candidate_action"
+    />
+</odoo>

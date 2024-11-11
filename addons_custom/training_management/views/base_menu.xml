@@ -1,0 +1,16 @@
+<odoo>
+
+    <menuitem id="training_management_root_menu" name="Training Management" />
+
+    <menuitem id="session_menu" name="Sessions" parent="training_management_root_menu"/>
+
+    <menuitem id="trainer_menu" name="Trainers" parent="training_management_root_menu"/>
+
+    <menuitem id="training_menu" name="Training" parent="training_management_root_menu"/>
+
+    <menuitem id="candidate_menu" name="Candidates" parent="training_management_root_menu"/>
+
+    <menuitem id="room_menu" name="Rooms" parent="training_management_root_menu"/>
+
+</odoo>
+

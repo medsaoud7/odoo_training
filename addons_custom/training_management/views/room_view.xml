@@ -1,0 +1,88 @@
+<odoo>
+    <!-- Tree View -->
+    <record id="room_view_tree" model="ir.ui.view">
+        <field name="name">room view</field>
+        <field name="model">room</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="number_places"/>
+                <field name="free"/>
+                <field name="session_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="room_view_form" model="ir.ui.view">
+        <field name="name">room form</field>
+        <field name="model">room</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="number_places"/>
+                        <field name="free"/>
+                        <field name="session_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="room_view_kanban" model="ir.ui.view">
+        <field name="name">room kanban</field>
+        <field name="model">room</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="number_places"/>
+                <field name="free"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <strong><field name="name"/></strong>
+                                <div>Seats: <field name="number_places"/></div>
+                                <div>Available: <field name="free"/></div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="check_free_room" model="ir.cron">
+        <field name="name">Room : check free rooms</field>
+        <field name="model_id" ref="model_room"/>
+        <field name="state">code</field>
+        <field name="code">model.check_free()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+    </record>
+
+    <!-- Action -->
+    <record id="room_action" model="ir.actions.act_window">
+        <field name="name">Room</field>
+        <field name="res_model">room</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_id" ref="room_view_kanban"/>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem
+        id="room_menu_item"
+        name="Room"
+        parent="room_menu"
+        action="room_action"
+    />
+</odoo>
